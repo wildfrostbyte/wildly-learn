@@ -1,0 +1,59 @@
+.answer-grid {
+  display: grid;
+  gap: clamp(0.75rem, 3vw, 1.5rem);
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.answer-grid[data-count="2"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.answer-grid[data-count="3"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.answer-grid[data-count="4"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (orientation: landscape) {
+  .answer-grid[data-count="4"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.letter-card {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 1.25rem;
+  background: var(--surface);
+  color: var(--text);
+  font-size: clamp(2rem, 10vw, 6rem);
+  font-weight: var(--font-weight-display);
+  box-shadow: 0 4px 10px var(--shadow);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+@media (orientation: landscape) {
+  .answer-grid[data-count="2"] .letter-card {
+    font-size: clamp(3rem, 14vw, 8rem);
+  }
+}
+
+.letter-card:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.letter-card[data-state="correct"] {
+  background: var(--accent-secondary);
+  color: var(--accent-secondary-contrast);
+}
+
+.letter-card[data-state="incorrect"] {
+  background: var(--incorrect);
+  color: #ffffff;
+}

@@ -1,0 +1,34 @@
+.icon-button {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.icon-button:active {
+  transform: scale(0.92);
+}
+
+.icon-button--medium {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-button--large {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.icon-button--surface {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.icon-button--primary {
+  background: var(--accent-secondary);
+  color: var(--accent-secondary-contrast);
+}

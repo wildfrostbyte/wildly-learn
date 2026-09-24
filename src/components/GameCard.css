@@ -1,0 +1,17 @@
+.game-card {
+  border: none;
+  border-radius: 1.5rem;
+  aspect-ratio: 1;
+  width: clamp(6rem, 30vw, 10rem);
+  color: var(--accent-primary-contrast);
+  box-shadow: 0 4px 10px var(--shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.game-card:active {
+  transform: scale(0.95);
+}
