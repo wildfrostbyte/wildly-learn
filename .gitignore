@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .impeccable/config.local.json
+.wrangler
+.dev.vars*
 
 # Editor directories and files
 .vscode/*
