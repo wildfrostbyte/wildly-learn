@@ -12,7 +12,7 @@ export function GameCard({ game, onSelect }: GameCardProps) {
     <button
       type="button"
       className="game-card"
-      style={{ background: game.accentColor }}
+      style={{ background: game.accentColor, color: game.accentContrast }}
       onClick={onSelect}
       aria-label={game.title}
     >

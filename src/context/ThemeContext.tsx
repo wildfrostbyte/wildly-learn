@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { ThemeName } from "../types";
 import { ThemeContext } from "./theme-context";
 
-const STORAGE_KEY = "piplet-theme";
+const STORAGE_KEY = "wildly-learn-theme";
 
 function readStoredTheme(): ThemeName | null {
   const stored = localStorage.getItem(STORAGE_KEY);

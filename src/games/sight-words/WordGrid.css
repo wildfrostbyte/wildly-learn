@@ -1,4 +1,4 @@
-.answer-grid {
+.word-grid {
   display: grid;
   gap: clamp(0.75rem, 3vw, 1.5rem);
   width: 100%;
@@ -7,62 +7,70 @@
   padding: 1rem;
 }
 
-.answer-grid[data-count="2"] {
+.word-grid[data-mode="quiz"][data-count="2"] {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.answer-grid[data-count="3"] {
+.word-grid[data-mode="quiz"][data-count="3"] {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.answer-grid[data-count="4"] {
+.word-grid[data-mode="quiz"][data-count="4"] {
   grid-template-columns: repeat(2, 1fr);
 }
 
 @media (orientation: landscape) {
-  .answer-grid[data-count="4"] {
+  .word-grid[data-mode="quiz"][data-count="4"] {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.letter-card {
-  aspect-ratio: 1;
+.word-grid[data-mode="review"] {
+  grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+}
+
+.word-card {
   border: none;
   border-radius: 1.25rem;
   background: var(--surface);
   color: var(--text);
-  font-size: clamp(2rem, 10vw, 6rem);
+  min-height: 5rem;
+  padding: 1rem;
+  font-size: clamp(1.25rem, 4vw, 2.25rem);
   font-weight: var(--font-weight-display);
   box-shadow: 0 4px 10px var(--shadow);
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 @media (orientation: landscape) {
-  .answer-grid[data-count="2"] .letter-card {
-    font-size: clamp(3rem, 14vw, 8rem);
+  .word-grid[data-mode="quiz"][data-count="2"] .word-card {
+    font-size: clamp(1.5rem, 6vw, 3rem);
   }
 }
 
-.letter-card:active:not(:disabled) {
+.word-card:active:not(:disabled) {
   transform: scale(0.95);
 }
 
-.letter-card[data-state="correct"] {
+.word-card[data-state="correct"] {
   background: var(--accent-secondary);
   color: var(--accent-secondary-contrast);
 }
 
-.letter-card[data-state="incorrect"] {
+.word-card[data-state="incorrect"] {
   background: var(--incorrect);
   color: #ffffff;
 }
 
-.letter-card[data-reveal="true"] {
-  animation: letter-card-reveal 0.4s ease;
+.word-card[data-reveal="true"] {
+  animation: word-card-reveal 0.4s ease;
 }
 
-@keyframes letter-card-reveal {
+@keyframes word-card-reveal {
   0% {
     transform: scale(0.9);
   }
@@ -75,7 +83,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .letter-card[data-reveal="true"] {
+  .word-card[data-reveal="true"] {
     animation: none;
   }
 }

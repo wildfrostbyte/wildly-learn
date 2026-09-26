@@ -14,6 +14,7 @@ export function MenuScreen({ onSelectGame }: MenuScreenProps) {
       <div className="menu-screen__top-bar">
         <ThemeToggle />
       </div>
+      <h1 className="menu-screen__title">Wildly Learn</h1>
       <div className="menu-screen__grid">
         {games.map((game) => (
           <GameCard key={game.id} game={game} onSelect={() => onSelectGame(game.id)} />

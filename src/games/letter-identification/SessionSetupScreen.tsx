@@ -1,5 +1,6 @@
-import { House, Play } from "lucide-react";
+import { House } from "lucide-react";
 import { IconButton } from "../../components/IconButton";
+import { PlayButton } from "../../components/PlayButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { LetterStripFullIcon } from "../../lib/icons/LetterStripFullIcon";
 import { LetterStripHalfIcon } from "../../lib/icons/LetterStripHalfIcon";
@@ -77,9 +78,7 @@ export function SessionSetupScreen({
       </div>
 
       <div className="session-setup__play">
-        <IconButton onClick={onPlay} size="large" variant="primary" ariaLabel="Start">
-          <Play size={36} fill="currentColor" />
-        </IconButton>
+        <PlayButton onClick={onPlay} />
       </div>
     </div>
   );

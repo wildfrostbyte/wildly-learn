@@ -1,0 +1,40 @@
+.play-button {
+  border: none;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.25rem 2rem;
+  background: var(--accent-secondary);
+  color: var(--accent-secondary-contrast);
+  cursor: pointer;
+  box-shadow: 0 4px 10px var(--shadow);
+  animation: play-button-pulse 1.8s ease-in-out infinite;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.play-button span {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
+
+.play-button:active {
+  transform: scale(0.94);
+}
+
+@keyframes play-button-pulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 10px var(--shadow);
+  }
+  50% {
+    box-shadow: 0 4px 10px var(--shadow), 0 0 0 8px color-mix(in srgb, var(--accent-secondary) 25%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-button {
+    animation: none;
+  }
+}

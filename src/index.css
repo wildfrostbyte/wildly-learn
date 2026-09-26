@@ -10,6 +10,7 @@
   --border: rgba(0, 0, 0, 0.1);
   --shadow: rgba(0, 0, 0, 0.15);
   --font-body: "Press Start 2P", "Segoe UI", system-ui, sans-serif;
+  --font-cursive: "Pacifico", "Segoe UI", cursive;
   --font-weight-display: 400;
 
   color-scheme: light;

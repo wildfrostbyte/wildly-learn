@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { useLetterSession } from "./useLetterSession";
-import { SessionSetupScreen } from "./SessionSetupScreen";
+import { useWordSession } from "./useWordSession";
+import { LevelSetupScreen } from "./LevelSetupScreen";
+import { ReviewScreen } from "./ReviewScreen";
 import { RoundScreen } from "./RoundScreen";
 import { CompletionScreen } from "./CompletionScreen";
 import { primeSpeech } from "../../lib/speech";
-import type { LetterCase, SessionMode } from "./types";
+import { wordsForLevel } from "./words";
+import type { Level } from "./types";
 
-type LetterIdentificationGameProps = {
+type SightWordsGameProps = {
   onExit: () => void;
 };
 
-export function LetterIdentificationGame({ onExit }: LetterIdentificationGameProps) {
-  const [mode, setMode] = useState<SessionMode>("half");
-  const [letterCase, setLetterCase] = useState<LetterCase>("upper");
+export function SightWordsGame({ onExit }: SightWordsGameProps) {
+  const [level, setLevel] = useState<Level>(1);
+  const [localView, setLocalView] = useState<"setup" | "review">("setup");
   const {
     phase,
     session,
@@ -22,7 +24,7 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
     startSession,
     submitAnswer,
     exitSession,
-  } = useLetterSession();
+  } = useWordSession();
 
   function handleExitSession() {
     exitSession();
@@ -34,7 +36,6 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
       <RoundScreen
         target={currentTarget}
         options={currentOptions}
-        letterCase={session.letterCase}
         roundOutcome={roundOutcome}
         onSelect={submitAnswer}
         onExit={handleExitSession}
@@ -46,15 +47,18 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
     return <CompletionScreen session={session} onExit={onExit} />;
   }
 
+  if (localView === "review") {
+    return <ReviewScreen words={wordsForLevel(level)} onExit={() => setLocalView("setup")} />;
+  }
+
   return (
-    <SessionSetupScreen
-      mode={mode}
-      letterCase={letterCase}
-      onModeChange={setMode}
-      onLetterCaseChange={setLetterCase}
+    <LevelSetupScreen
+      level={level}
+      onLevelChange={setLevel}
+      onReview={() => setLocalView("review")}
       onPlay={() => {
         primeSpeech();
-        startSession(mode, letterCase);
+        startSession(level);
       }}
       onExit={onExit}
     />

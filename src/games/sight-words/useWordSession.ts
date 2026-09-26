@@ -4,47 +4,37 @@ import {
   buildSessionOrder,
   getOptionCountForRound,
 } from "./sessionLogic";
-import type {
-  Letter,
-  LetterCase,
-  RoundOutcome,
-  Session,
-  SessionMode,
-} from "./types";
+import type { Level, RoundOutcome, Session, SightWord } from "./types";
 
 const CORRECT_FEEDBACK_DELAY_MS = 1400;
 const INCORRECT_FEEDBACK_DELAY_MS = 2200;
 
 export type SessionPhase = "setup" | "playing" | "done";
 
-function optionsForRound(session: Session, roundIndex: number): Letter[] {
+function optionsForRound(session: Session, roundIndex: number): SightWord[] {
   const target = session.order[roundIndex];
   const optionCount = getOptionCountForRound(roundIndex + 1);
-  return buildRoundOptions(session.order, target, optionCount, session.letterCase);
+  return buildRoundOptions(session.order, target, optionCount);
 }
 
-export function useLetterSession() {
+export function useWordSession() {
   const [phase, setPhase] = useState<SessionPhase>("setup");
   const [session, setSession] = useState<Session | null>(null);
-  const [currentOptions, setCurrentOptions] = useState<Letter[]>([]);
+  const [currentOptions, setCurrentOptions] = useState<SightWord[]>([]);
   const [roundOutcome, setRoundOutcome] = useState<RoundOutcome>(null);
 
-  const startSession = useCallback(
-    (mode: SessionMode, letterCase: LetterCase) => {
-      const newSession: Session = {
-        mode,
-        letterCase,
-        order: buildSessionOrder(mode),
-        currentRound: 0,
-        results: [],
-      };
-      setSession(newSession);
-      setCurrentOptions(optionsForRound(newSession, 0));
-      setRoundOutcome(null);
-      setPhase("playing");
-    },
-    [],
-  );
+  const startSession = useCallback((level: Level) => {
+    const newSession: Session = {
+      level,
+      order: buildSessionOrder(level),
+      currentRound: 0,
+      results: [],
+    };
+    setSession(newSession);
+    setCurrentOptions(optionsForRound(newSession, 0));
+    setRoundOutcome(null);
+    setPhase("playing");
+  }, []);
 
   const exitSession = useCallback(() => {
     setSession(null);
@@ -55,12 +45,12 @@ export function useLetterSession() {
   const currentTarget = session ? session.order[session.currentRound] : null;
 
   const submitAnswer = useCallback(
-    (selected: Letter) => {
+    (selected: SightWord) => {
       if (!session || !currentTarget || roundOutcome) return;
-      const correct = selected.char === currentTarget.char;
+      const correct = selected.text === currentTarget.text;
       setSession({
         ...session,
-        results: [...session.results, { letter: currentTarget.char, correct }],
+        results: [...session.results, { word: currentTarget.text, correct }],
       });
       setRoundOutcome(correct ? "correct" : "incorrect");
     },

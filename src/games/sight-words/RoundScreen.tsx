@@ -2,39 +2,31 @@ import { useEffect, useState } from "react";
 import { Check, Frown, House, Volume2 } from "lucide-react";
 import { IconButton } from "../../components/IconButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
-import { speakLetterName } from "../../lib/speech";
+import { speakWord } from "../../lib/speech";
 import { playCorrectTone, playIncorrectTone } from "../../lib/tones";
-import { AnswerGrid } from "./AnswerGrid";
-import type { Letter, LetterCase, RoundOutcome } from "./types";
+import { WordGrid } from "./WordGrid";
+import type { RoundOutcome, SightWord } from "./types";
 import "./RoundScreen.css";
 
 type RoundScreenProps = {
-  target: Letter;
-  options: Letter[];
-  letterCase: LetterCase;
+  target: SightWord;
+  options: SightWord[];
   roundOutcome: RoundOutcome;
-  onSelect: (letter: Letter) => void;
+  onSelect: (word: SightWord) => void;
   onExit: () => void;
 };
 
-export function RoundScreen({
-  target,
-  options,
-  letterCase,
-  roundOutcome,
-  onSelect,
-  onExit,
-}: RoundScreenProps) {
-  const [selectedChar, setSelectedChar] = useState<string | null>(null);
+export function RoundScreen({ target, options, roundOutcome, onSelect, onExit }: RoundScreenProps) {
+  const [selectedText, setSelectedText] = useState<string | null>(null);
   const [spokenTarget, setSpokenTarget] = useState(target);
 
   if (target !== spokenTarget) {
     setSpokenTarget(target);
-    setSelectedChar(null);
+    setSelectedText(null);
   }
 
   useEffect(() => {
-    speakLetterName(target.char);
+    speakWord(target.text);
   }, [target]);
 
   useEffect(() => {
@@ -42,9 +34,9 @@ export function RoundScreen({
     if (roundOutcome === "incorrect") playIncorrectTone();
   }, [roundOutcome]);
 
-  function handleSelect(letter: Letter) {
-    setSelectedChar(letter.char);
-    onSelect(letter);
+  function handleSelect(word: SightWord) {
+    setSelectedText(word.text);
+    onSelect(word);
   }
 
   return (
@@ -55,18 +47,18 @@ export function RoundScreen({
         </IconButton>
         <div className="round-screen__top-bar-right">
           <ThemeToggle />
-          <IconButton onClick={() => speakLetterName(target.char)} ariaLabel="Repeat letter">
+          <IconButton onClick={() => speakWord(target.text)} ariaLabel="Repeat word">
             <Volume2 size={22} />
           </IconButton>
         </div>
       </div>
 
       <div className="round-screen__grid-area">
-        <AnswerGrid
-          options={options}
-          letterCase={letterCase}
-          selectedChar={selectedChar}
-          correctChar={target.char}
+        <WordGrid
+          words={options}
+          mode="quiz"
+          selectedText={selectedText}
+          correctText={target.text}
           roundOutcome={roundOutcome}
           onSelect={handleSelect}
         />

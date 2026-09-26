@@ -10,6 +10,17 @@
   padding: 1rem;
 }
 
+.menu-screen__title {
+  margin: 0 0 0.5rem;
+  padding: 0 1rem;
+  text-align: center;
+  font-family: var(--font-cursive);
+  font-size: clamp(2.75rem, 14vw, 4.5rem);
+  font-weight: 400;
+  color: var(--accent-secondary);
+  text-shadow: 0.06em 0.06em 0 var(--shadow);
+}
+
 .menu-screen__grid {
   flex: 1;
   display: flex;
