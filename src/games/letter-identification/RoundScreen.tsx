@@ -5,6 +5,7 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakLetterName } from "../../lib/speech";
 import { playCorrectTone, playIncorrectTone } from "../../lib/tones";
 import { AnswerGrid } from "./AnswerGrid";
+import { phoneticFor } from "./letters";
 import type { Letter, LetterCase, RoundOutcome } from "./types";
 import "./RoundScreen.css";
 
@@ -34,7 +35,7 @@ export function RoundScreen({
   }
 
   useEffect(() => {
-    speakLetterName(target.char);
+    speakLetterName(phoneticFor(target.char));
   }, [target]);
 
   useEffect(() => {
@@ -55,7 +56,7 @@ export function RoundScreen({
         </IconButton>
         <div className="round-screen__top-bar-right">
           <ThemeToggle />
-          <IconButton onClick={() => speakLetterName(target.char)} ariaLabel="Repeat letter">
+          <IconButton onClick={() => speakLetterName(phoneticFor(target.char))} ariaLabel="Repeat letter">
             <Volume2 size={22} />
           </IconButton>
         </div>
@@ -65,6 +66,7 @@ export function RoundScreen({
         <AnswerGrid
           options={options}
           letterCase={letterCase}
+          mode="quiz"
           selectedChar={selectedChar}
           correctChar={target.char}
           roundOutcome={roundOutcome}

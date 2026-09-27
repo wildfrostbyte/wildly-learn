@@ -1,7 +1,6 @@
 const PREFERRED_VOICE_NAME_PATTERNS = [/natural/i, /online/i, /google/i];
 
-// The Web Speech API exposes no gender field, so this matches known female voice names
-// across Chromium's common sources (Windows SAPI/Edge neural voices, Chrome's Google voices).
+// No gender field on SpeechSynthesisVoice, so match known female voice names instead.
 const FEMALE_VOICE_NAME_PATTERNS = [
   /female/i,
   /\b(aria|ava|jenny|emma|zira|samantha|victoria|susan|linda|hazel|michelle|karen|moira|tessa|fiona|kate|serena|heera)\b/i,
@@ -19,8 +18,7 @@ function englishOrAll(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice[] {
   return englishVoices.length > 0 ? englishVoices : voices;
 }
 
-// Prefers higher-quality network/neural voices (Edge's "Online (Natural)" voices,
-// Chrome's "Google" voices), which sound much better but can glitch on short utterances.
+// Prefers higher-quality network voices (Edge "Natural", Chrome "Google") over local ones.
 function pickPreferredVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
   const candidates = englishOrAll(voices);
   const femaleCandidates = candidates.filter((voice) => matchesAny(voice.name, FEMALE_VOICE_NAME_PATTERNS));
@@ -34,8 +32,7 @@ function pickPreferredVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoic
   return pool[0] ?? null;
 }
 
-// A local (on-device) voice, e.g. Windows' bundled "Microsoft Zira/David Desktop" — always
-// available offline in both Chrome and Edge, with no network round-trip to glitch on.
+// A local voice (e.g. Windows' Zira/David) — offline, so it can't glitch like network voices.
 function pickFallbackVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
   const candidates = englishOrAll(voices);
   const localVoices = candidates.filter((voice) => voice.localService);
@@ -47,9 +44,10 @@ function pickFallbackVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice
 
 function resolveVoices() {
   const voices = window.speechSynthesis.getVoices();
-  // iOS Safari commonly returns an empty list on the first call and its
-  // voiceschanged event is unreliable — don't cache a null result from an
-  // empty list, or a real voice list arriving later would never get picked up.
+  /*
+   * iOS can return an empty list once, then never fire voiceschanged again.
+   * Don't cache null here, or a later real list would never get picked up.
+   */
   if (voices.length === 0) return;
   preferredVoice = pickPreferredVoice(voices);
   fallbackVoice = pickFallbackVoice(voices);
@@ -67,8 +65,7 @@ function getFallbackVoice(): SpeechSynthesisVoice | null {
   return fallbackVoice ?? null;
 }
 
-// Fires for a deliberate cancel()/interrupt too, not just real failures — those must be
-// ignored, or every intentional interruption would trigger a fallback-voice retry.
+// Also fires on our own cancel() — ignore those or every interrupt retries with fallback.
 const IGNORED_ERROR_TYPES = new Set(["canceled", "interrupted"]);
 
 function speakWithVoice(
@@ -114,8 +111,7 @@ export function speakLetterName(letterName: string) {
 
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
-    // Chromium can drop or garble a speak() called in the same tick as a preceding
-    // cancel(), especially with network voices — deferring a tick avoids that race.
+    // Defer a tick — Chromium can drop/garble a speak() issued right after cancel().
     pendingSpeakTimeout = setTimeout(() => {
       pendingSpeakTimeout = null;
       speakNow(letterName);

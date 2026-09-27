@@ -1,0 +1,30 @@
+{
+  "letters": [
+    { "lowercase": "a", "uppercase": "A", "phonetic": "eigh" },
+    { "lowercase": "b", "uppercase": "B", "phonetic": "bee" },
+    { "lowercase": "c", "uppercase": "C", "phonetic": "see" },
+    { "lowercase": "d", "uppercase": "D", "phonetic": "dee" },
+    { "lowercase": "e", "uppercase": "E", "phonetic": "ee" },
+    { "lowercase": "f", "uppercase": "F", "phonetic": "f" },
+    { "lowercase": "g", "uppercase": "G", "phonetic": "jee" },
+    { "lowercase": "h", "uppercase": "H", "phonetic": "aitch" },
+    { "lowercase": "i", "uppercase": "I", "phonetic": "eye" },
+    { "lowercase": "j", "uppercase": "J", "phonetic": "jay" },
+    { "lowercase": "k", "uppercase": "K", "phonetic": "kay" },
+    { "lowercase": "l", "uppercase": "L", "phonetic": "ell" },
+    { "lowercase": "m", "uppercase": "M", "phonetic": "emm" },
+    { "lowercase": "n", "uppercase": "N", "phonetic": "n" },
+    { "lowercase": "o", "uppercase": "O", "phonetic": "oh" },
+    { "lowercase": "p", "uppercase": "P", "phonetic": "pee" },
+    { "lowercase": "q", "uppercase": "Q", "phonetic": "cue" },
+    { "lowercase": "r", "uppercase": "R", "phonetic": "are" },
+    { "lowercase": "s", "uppercase": "S", "phonetic": "ess" },
+    { "lowercase": "t", "uppercase": "T", "phonetic": "tee" },
+    { "lowercase": "u", "uppercase": "U", "phonetic": "you" },
+    { "lowercase": "v", "uppercase": "V", "phonetic": "vee" },
+    { "lowercase": "w", "uppercase": "W", "phonetic": "double-you" },
+    { "lowercase": "x", "uppercase": "X", "phonetic": "ex" },
+    { "lowercase": "y", "uppercase": "Y", "phonetic": "why" },
+    { "lowercase": "z", "uppercase": "Z", "phonetic": "zee" }
+  ]
+}

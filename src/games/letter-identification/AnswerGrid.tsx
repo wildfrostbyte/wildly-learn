@@ -5,23 +5,38 @@ import "./AnswerGrid.css";
 type AnswerGridProps = {
   options: Letter[];
   letterCase: LetterCase;
-  selectedChar: string | null;
-  correctChar: string;
-  roundOutcome: RoundOutcome;
+  mode: "review" | "quiz";
   onSelect: (letter: Letter) => void;
+  selectedChar?: string | null;
+  correctChar?: string;
+  roundOutcome?: RoundOutcome;
 };
 
 export function AnswerGrid({
   options,
   letterCase,
-  selectedChar,
-  correctChar,
-  roundOutcome,
+  mode,
   onSelect,
+  selectedChar = null,
+  correctChar,
+  roundOutcome = null,
 }: AnswerGridProps) {
   return (
-    <div className="answer-grid" data-count={options.length}>
+    <div className="answer-grid" data-mode={mode} data-count={options.length}>
       {options.map((option) => {
+        if (mode === "review") {
+          return (
+            <button
+              key={option.char}
+              type="button"
+              className="letter-card"
+              onClick={() => onSelect(option)}
+            >
+              {toDisplayChar(option.char, letterCase)}
+            </button>
+          );
+        }
+
         const isSelected = option.char === selectedChar;
         const isRevealedCorrect =
           !isSelected && roundOutcome === "incorrect" && option.char === correctChar;

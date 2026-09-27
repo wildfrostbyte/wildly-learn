@@ -26,7 +26,8 @@ export function RoundScreen({ target, options, roundOutcome, onSelect, onExit }:
   }
 
   useEffect(() => {
-    speakWord(target.text);
+    // iOS announces "capital X" for a bare uppercase letter (e.g. "I") — speak lowercase.
+    speakWord(target.text.toLowerCase());
   }, [target]);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export function RoundScreen({ target, options, roundOutcome, onSelect, onExit }:
         </IconButton>
         <div className="round-screen__top-bar-right">
           <ThemeToggle />
-          <IconButton onClick={() => speakWord(target.text)} ariaLabel="Repeat word">
+          <IconButton onClick={() => speakWord(target.text.toLowerCase())} ariaLabel="Repeat word">
             <Volume2 size={22} />
           </IconButton>
         </div>

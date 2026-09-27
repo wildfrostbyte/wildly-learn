@@ -1,4 +1,4 @@
-import { House } from "lucide-react";
+import { House, Volume2 } from "lucide-react";
 import { IconButton } from "../../components/IconButton";
 import { PlayButton } from "../../components/PlayButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
@@ -12,6 +12,7 @@ type SessionSetupScreenProps = {
   letterCase: LetterCase;
   onModeChange: (mode: SessionMode) => void;
   onLetterCaseChange: (letterCase: LetterCase) => void;
+  onReview: () => void;
   onPlay: () => void;
   onExit: () => void;
 };
@@ -21,6 +22,7 @@ export function SessionSetupScreen({
   letterCase,
   onModeChange,
   onLetterCaseChange,
+  onReview,
   onPlay,
   onExit,
 }: SessionSetupScreenProps) {
@@ -77,7 +79,16 @@ export function SessionSetupScreen({
         </div>
       </div>
 
-      <div className="session-setup__play">
+      <div className="session-setup__actions">
+        <button
+          type="button"
+          className="game-action-button game-action-button--listen"
+          onClick={onReview}
+          aria-label="Listen to letters"
+        >
+          <Volume2 size={30} />
+          <span>Listen</span>
+        </button>
         <PlayButton onClick={onPlay} />
       </div>
     </div>

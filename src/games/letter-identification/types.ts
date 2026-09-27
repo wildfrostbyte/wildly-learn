@@ -2,6 +2,9 @@ export type LetterCase = "upper" | "lower";
 
 export type Letter = {
   char: string;
+  lowercase: string;
+  uppercase: string;
+  phonetic: string;
   confusableWithUpper?: string[];
   confusableWithLower?: string[];
 };

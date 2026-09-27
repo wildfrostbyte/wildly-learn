@@ -22,7 +22,7 @@ export function ReviewScreen({ words, onExit }: ReviewScreenProps) {
       </div>
 
       <div className="review-screen__grid-area">
-        <WordGrid words={words} mode="review" onSelect={(word) => speakWord(word.text)} />
+        <WordGrid words={words} mode="review" onSelect={(word) => speakWord(word.text.toLowerCase())} />
       </div>
     </div>
   );
