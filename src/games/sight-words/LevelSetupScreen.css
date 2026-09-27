@@ -56,7 +56,7 @@
 }
 
 .level-tile[data-level="1"] {
-  background: #ff6f6f;
+  background: var(--red);
 }
 
 .level-tile[data-level="2"] {

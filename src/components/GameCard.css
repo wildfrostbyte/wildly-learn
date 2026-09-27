@@ -2,13 +2,23 @@
   border: none;
   border-radius: 1.5rem;
   aspect-ratio: 1;
-  width: clamp(6rem, 30vw, 10rem);
+  width: clamp(7rem, 30vw, 10rem);
   box-shadow: 0 4px 10px var(--shadow);
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.3rem;
+  padding: 0.4rem;
   transition: transform 0.15s ease;
+}
+
+.game-card__label {
+  font-size: var(--font-size-caption);
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .game-card:active {

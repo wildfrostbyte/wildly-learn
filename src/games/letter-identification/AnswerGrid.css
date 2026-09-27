@@ -63,7 +63,7 @@
 
 .letter-card[data-state="incorrect"] {
   background: var(--incorrect);
-  color: #ffffff;
+  color: var(--accent-tertiary-contrast);
 }
 
 .letter-card[data-reveal="true"] {

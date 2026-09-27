@@ -14,9 +14,9 @@ export function GameCard({ game, onSelect }: GameCardProps) {
       className="game-card"
       style={{ background: game.accentColor, color: game.accentContrast }}
       onClick={onSelect}
-      aria-label={game.title}
     >
-      <Icon size={64} />
+      <Icon size={56} />
+      <span className="game-card__label">{game.title}</span>
     </button>
   );
 }

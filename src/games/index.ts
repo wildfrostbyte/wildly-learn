@@ -7,7 +7,7 @@ import { SightWordIcon } from "../lib/icons/SightWordIcon";
 export const games: GameDefinition[] = [
   {
     id: "letter-identification",
-    title: "Letter Identification",
+    title: "Letters",
     description: "Listen to a letter and tap the matching card.",
     accentColor: "var(--accent-primary)",
     accentContrast: "var(--accent-primary-contrast)",

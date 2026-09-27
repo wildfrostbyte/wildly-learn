@@ -63,7 +63,7 @@
 
 .word-card[data-state="incorrect"] {
   background: var(--incorrect);
-  color: #ffffff;
+  color: var(--accent-tertiary-contrast);
 }
 
 .word-card[data-reveal="true"] {

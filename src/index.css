@@ -1,4 +1,6 @@
 :root {
+  --red: #d92121;
+
   --bg: #fffbeb;
   --surface: #ffffff;
   --text: #1a1a1a;
@@ -6,12 +8,15 @@
   --accent-primary-contrast: #1a1a1a;
   --accent-secondary: #3b4cca;
   --accent-secondary-contrast: #ffffff;
-  --incorrect: #d94f4f;
+  --accent-tertiary: var(--red);
+  --accent-tertiary-contrast: #ffffff;
+  --incorrect: var(--accent-tertiary);
   --border: rgba(0, 0, 0, 0.1);
   --shadow: rgba(0, 0, 0, 0.15);
   --font-body: "Press Start 2P", "Segoe UI", system-ui, sans-serif;
   --font-cursive: "Pacifico", "Segoe UI", cursive;
   --font-weight-display: 400;
+  --font-size-caption: 0.6rem;
 
   color-scheme: light;
 }
@@ -24,15 +29,19 @@
   --accent-primary-contrast: #eaaa00;
   --accent-secondary: #eaaa00;
   --accent-secondary-contrast: #0d1f17;
-  --incorrect: #a6192e;
+  --accent-tertiary: #a6192e;
+  --accent-tertiary-contrast: #ffffff;
+  --incorrect: var(--accent-tertiary);
   --border: rgba(255, 255, 255, 0.12);
   --shadow: rgba(0, 0, 0, 0.4);
   --font-body: "Segoe UI", system-ui, sans-serif;
   --font-weight-display: 700;
+  --font-size-caption: 0.75rem;
 
   color-scheme: dark;
 }
 
+/* Mirror of the dark block above for first paint, before ThemeProvider sets data-theme. Keep in sync. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0d1f17;
@@ -42,11 +51,14 @@
     --accent-primary-contrast: #eaaa00;
     --accent-secondary: #eaaa00;
     --accent-secondary-contrast: #0d1f17;
-    --incorrect: #a6192e;
+    --accent-tertiary: #a6192e;
+    --accent-tertiary-contrast: #ffffff;
+    --incorrect: var(--accent-tertiary);
     --border: rgba(255, 255, 255, 0.12);
     --shadow: rgba(0, 0, 0, 0.4);
     --font-body: "Segoe UI", system-ui, sans-serif;
     --font-weight-display: 700;
+    --font-size-caption: 0.75rem;
 
     color-scheme: dark;
   }
