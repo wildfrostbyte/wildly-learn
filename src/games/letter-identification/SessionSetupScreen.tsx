@@ -1,6 +1,6 @@
-import { House, Volume2 } from "lucide-react";
+import { House, Play, Volume2 } from "lucide-react";
+import { ActionButton } from "../../components/ActionButton";
 import { IconButton } from "../../components/IconButton";
-import { PlayButton } from "../../components/PlayButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { LetterStripFullIcon } from "../../lib/icons/LetterStripFullIcon";
 import { LetterStripHalfIcon } from "../../lib/icons/LetterStripHalfIcon";
@@ -65,7 +65,8 @@ export function SessionSetupScreen({
             onClick={() => onLetterCaseChange("upper")}
             aria-label="Uppercase letters"
           >
-            A
+            <span className="case-toggle__letter">A</span>
+            <span className="case-toggle__label">Uppercase</span>
           </button>
           <button
             type="button"
@@ -74,22 +75,25 @@ export function SessionSetupScreen({
             onClick={() => onLetterCaseChange("lower")}
             aria-label="Lowercase letters"
           >
-            a
+            <span className="case-toggle__letter">a</span>
+            <span className="case-toggle__label">Lowercase</span>
           </button>
         </div>
       </div>
 
       <div className="session-setup__actions">
-        <button
-          type="button"
-          className="game-action-button game-action-button--listen"
+        <ActionButton
+          icon={<Volume2 />}
+          label="Listen"
           onClick={onReview}
-          aria-label="Listen to letters"
-        >
-          <Volume2 size={30} />
-          <span>Listen</span>
-        </button>
-        <PlayButton onClick={onPlay} />
+          ariaLabel="Listen to letters"
+        />
+        <ActionButton
+          variant="primary"
+          icon={<Play fill="currentColor" />}
+          label="Play"
+          onClick={onPlay}
+        />
       </div>
     </div>
   );

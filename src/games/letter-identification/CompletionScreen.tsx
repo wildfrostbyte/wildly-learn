@@ -1,11 +1,13 @@
-import { Check, Frown, House, PartyPopper } from "lucide-react";
+import { Check, House, PartyPopper, X } from "lucide-react";
 import { IconButton } from "../../components/IconButton";
+import { RetryButton } from "../../components/RetryButton";
 import { toDisplayChar } from "./letters";
 import type { Session } from "./types";
 import "./CompletionScreen.css";
 
 type CompletionScreenProps = {
   session: Session;
+  onRetry: () => void;
   onExit: () => void;
 };
 
@@ -15,7 +17,7 @@ function tierMessage(percent: number): string {
   return "Nice try!";
 }
 
-export function CompletionScreen({ session, onExit }: CompletionScreenProps) {
+export function CompletionScreen({ session, onRetry, onExit }: CompletionScreenProps) {
   const total = session.results.length;
   const correctCount = session.results.filter((result) => result.correct).length;
   const percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
@@ -43,14 +45,17 @@ export function CompletionScreen({ session, onExit }: CompletionScreenProps) {
             <span className="completion-screen__tile-letter">
               {toDisplayChar(result.letter, session.letterCase)}
             </span>
-            {result.correct ? <Check size={22} /> : <Frown size={22} />}
+            {result.correct ? <Check size={22} /> : <X size={22} />}
           </div>
         ))}
       </div>
 
-      <IconButton onClick={onExit} size="large" variant="primary" ariaLabel="Back to menu">
-        <House size={32} />
-      </IconButton>
+      <div className="completion-screen__actions">
+        <RetryButton onClick={onRetry} />
+        <IconButton onClick={onExit} size="large" variant="primary" ariaLabel="Back to menu">
+          <House size={32} />
+        </IconButton>
+      </div>
     </div>
   );
 }

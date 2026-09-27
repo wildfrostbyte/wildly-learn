@@ -1,6 +1,6 @@
-import { House, Star, Volume2 } from "lucide-react";
+import { House, Play, Star, Volume2 } from "lucide-react";
+import { ActionButton } from "../../components/ActionButton";
 import { IconButton } from "../../components/IconButton";
-import { PlayButton } from "../../components/PlayButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { LEVELS } from "./words";
 import type { Level } from "./types";
@@ -52,16 +52,18 @@ export function LevelSetupScreen({
         </div>
 
         <div className="level-setup__actions">
-          <button
-            type="button"
-            className="game-action-button game-action-button--listen"
+          <ActionButton
+            icon={<Volume2 />}
+            label="Listen"
             onClick={onReview}
-            aria-label="Listen to words"
-          >
-            <Volume2 size={30} />
-            <span>Listen</span>
-          </button>
-          <PlayButton onClick={onPlay} />
+            ariaLabel="Listen to words"
+          />
+          <ActionButton
+            variant="primary"
+            icon={<Play fill="currentColor" />}
+            label="Play"
+            onClick={onPlay}
+          />
         </div>
       </div>
     </div>

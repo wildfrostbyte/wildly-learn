@@ -49,9 +49,20 @@
 }
 
 .case-toggle__half {
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  min-width: 5rem;
+}
+
+.case-toggle__letter {
   font-size: 3rem;
   font-weight: var(--font-weight-display);
-  min-width: 5rem;
+}
+
+.case-toggle__label {
+  font-size: var(--font-size-caption);
+  letter-spacing: 0.05em;
 }
 
 .session-setup__actions {
@@ -60,31 +71,4 @@
   justify-content: center;
   gap: 1.25rem;
   padding-bottom: 3rem;
-}
-
-.game-action-button {
-  border: none;
-  border-radius: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px var(--shadow);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.game-action-button:active {
-  transform: scale(0.94);
-}
-
-.game-action-button span {
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-}
-
-.game-action-button--listen {
-  background: var(--surface);
-  color: var(--text);
 }

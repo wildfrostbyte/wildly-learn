@@ -2,10 +2,16 @@ let audioContext: AudioContext | null = null;
 
 function getAudioContext(): AudioContext {
   audioContext ??= new AudioContext();
-  if (audioContext.state === "suspended") {
+  // Not just "suspended": iOS Safari also has a WebKit-only "interrupted" state.
+  if (audioContext.state !== "running") {
     void audioContext.resume();
   }
   return audioContext;
+}
+
+// iOS only lets audio start from a context created inside a user gesture - call from a tap.
+export function primeTones() {
+  getAudioContext();
 }
 
 function playTone(frequencies: number[], durationSeconds: number) {

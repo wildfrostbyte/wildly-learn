@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Check, Frown, House, Volume2 } from "lucide-react";
+import { House, Volume2 } from "lucide-react";
+import { AnswerFeedback } from "../../components/AnswerFeedback";
 import { IconButton } from "../../components/IconButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakLetterName } from "../../lib/speech";
-import { playCorrectTone, playIncorrectTone } from "../../lib/tones";
 import { AnswerGrid } from "./AnswerGrid";
 import { phoneticFor } from "./letters";
 import type { Letter, LetterCase, RoundOutcome } from "./types";
@@ -38,11 +38,6 @@ export function RoundScreen({
     speakLetterName(phoneticFor(target.char));
   }, [target]);
 
-  useEffect(() => {
-    if (roundOutcome === "correct") playCorrectTone();
-    if (roundOutcome === "incorrect") playIncorrectTone();
-  }, [roundOutcome]);
-
   function handleSelect(letter: Letter) {
     setSelectedChar(letter.char);
     onSelect(letter);
@@ -74,11 +69,7 @@ export function RoundScreen({
         />
       </div>
 
-      {roundOutcome && (
-        <div className="round-screen__feedback" data-state={roundOutcome}>
-          {roundOutcome === "correct" ? <Check size={88} /> : <Frown size={88} />}
-        </div>
-      )}
+      {roundOutcome && <AnswerFeedback outcome={roundOutcome} />}
     </div>
   );
 }

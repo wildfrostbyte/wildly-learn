@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Check, Frown, House, Volume2 } from "lucide-react";
+import { House, Volume2 } from "lucide-react";
+import { AnswerFeedback } from "../../components/AnswerFeedback";
 import { IconButton } from "../../components/IconButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakWord } from "../../lib/speech";
-import { playCorrectTone, playIncorrectTone } from "../../lib/tones";
 import { WordGrid } from "./WordGrid";
 import type { RoundOutcome, SightWord } from "./types";
 import "./RoundScreen.css";
@@ -26,14 +26,9 @@ export function RoundScreen({ target, options, roundOutcome, onSelect, onExit }:
   }
 
   useEffect(() => {
-    // iOS announces "capital X" for a bare uppercase letter (e.g. "I") — speak lowercase.
+    // iOS announces "capital X" for a bare uppercase letter (e.g. "I") - speak lowercase.
     speakWord(target.text.toLowerCase());
   }, [target]);
-
-  useEffect(() => {
-    if (roundOutcome === "correct") playCorrectTone();
-    if (roundOutcome === "incorrect") playIncorrectTone();
-  }, [roundOutcome]);
 
   function handleSelect(word: SightWord) {
     setSelectedText(word.text);
@@ -65,11 +60,7 @@ export function RoundScreen({ target, options, roundOutcome, onSelect, onExit }:
         />
       </div>
 
-      {roundOutcome && (
-        <div className="round-screen__feedback" data-state={roundOutcome}>
-          {roundOutcome === "correct" ? <Check size={88} /> : <Frown size={88} />}
-        </div>
-      )}
+      {roundOutcome && <AnswerFeedback outcome={roundOutcome} />}
     </div>
   );
 }

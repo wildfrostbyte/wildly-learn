@@ -111,7 +111,7 @@ export function speakLetterName(letterName: string) {
 
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
-    // Defer a tick — Chromium can drop/garble a speak() issued right after cancel().
+    // Defer a sec — Chromium can drop/garble a speak() issued right after cancel().
     pendingSpeakTimeout = setTimeout(() => {
       pendingSpeakTimeout = null;
       speakNow(letterName);

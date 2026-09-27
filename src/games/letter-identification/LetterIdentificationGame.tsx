@@ -5,6 +5,7 @@ import { ReviewScreen } from "./ReviewScreen";
 import { RoundScreen } from "./RoundScreen";
 import { CompletionScreen } from "./CompletionScreen";
 import { primeSpeech } from "../../lib/speech";
+import { primeTones } from "../../lib/tones";
 import type { LetterCase, SessionMode } from "./types";
 
 type LetterIdentificationGameProps = {
@@ -31,6 +32,12 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
     onExit();
   }
 
+  function handlePlay() {
+    primeSpeech();
+    primeTones();
+    startSession(mode, letterCase);
+  }
+
   if (phase === "playing" && session && currentTarget) {
     return (
       <RoundScreen
@@ -45,7 +52,7 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
   }
 
   if (phase === "done" && session) {
-    return <CompletionScreen session={session} onExit={onExit} />;
+    return <CompletionScreen session={session} onRetry={handlePlay} onExit={onExit} />;
   }
 
   if (localView === "review") {
@@ -59,10 +66,7 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
       onModeChange={setMode}
       onLetterCaseChange={setLetterCase}
       onReview={() => setLocalView("review")}
-      onPlay={() => {
-        primeSpeech();
-        startSession(mode, letterCase);
-      }}
+      onPlay={handlePlay}
       onExit={onExit}
     />
   );

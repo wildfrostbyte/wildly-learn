@@ -105,33 +105,6 @@
   gap: 1.25rem;
 }
 
-.game-action-button {
-  border: none;
-  border-radius: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px var(--shadow);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.game-action-button:active {
-  transform: scale(0.94);
-}
-
-.game-action-button span {
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-}
-
-.game-action-button--listen {
-  background: var(--surface);
-  color: var(--text);
-}
-
 @keyframes level-tile-pop {
   from {
     transform: scale(0.5);

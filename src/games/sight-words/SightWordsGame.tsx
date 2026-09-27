@@ -5,6 +5,7 @@ import { ReviewScreen } from "./ReviewScreen";
 import { RoundScreen } from "./RoundScreen";
 import { CompletionScreen } from "./CompletionScreen";
 import { primeSpeech } from "../../lib/speech";
+import { primeTones } from "../../lib/tones";
 import { wordsForLevel } from "./words";
 import type { Level } from "./types";
 
@@ -31,6 +32,12 @@ export function SightWordsGame({ onExit }: SightWordsGameProps) {
     onExit();
   }
 
+  function handlePlay() {
+    primeSpeech();
+    primeTones();
+    startSession(level);
+  }
+
   if (phase === "playing" && session && currentTarget) {
     return (
       <RoundScreen
@@ -44,7 +51,7 @@ export function SightWordsGame({ onExit }: SightWordsGameProps) {
   }
 
   if (phase === "done" && session) {
-    return <CompletionScreen session={session} onExit={onExit} />;
+    return <CompletionScreen session={session} onRetry={handlePlay} onExit={onExit} />;
   }
 
   if (localView === "review") {
@@ -56,10 +63,7 @@ export function SightWordsGame({ onExit }: SightWordsGameProps) {
       level={level}
       onLevelChange={setLevel}
       onReview={() => setLocalView("review")}
-      onPlay={() => {
-        primeSpeech();
-        startSession(level);
-      }}
+      onPlay={handlePlay}
       onExit={onExit}
     />
   );

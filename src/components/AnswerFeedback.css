@@ -1,0 +1,42 @@
+.answer-feedback {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: answer-feedback-pop 0.3s ease;
+}
+
+.answer-feedback[data-state="correct"] {
+  color: var(--accent-secondary);
+}
+
+.answer-feedback[data-state="incorrect"] {
+  color: var(--incorrect);
+}
+
+.answer-feedback__badge {
+  display: flex;
+  padding: 1.25rem;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+@keyframes answer-feedback-pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answer-feedback {
+    animation: none;
+  }
+}

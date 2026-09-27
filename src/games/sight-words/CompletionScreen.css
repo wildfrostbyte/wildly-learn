@@ -80,6 +80,11 @@
   color: var(--incorrect);
 }
 
+.completion-screen__actions {
+  display: flex;
+  gap: 1.25rem;
+}
+
 @keyframes completion-pop {
   from {
     transform: scale(0.7);
