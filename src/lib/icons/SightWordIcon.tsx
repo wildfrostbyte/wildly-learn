@@ -1,3 +1,5 @@
+import { ICON_TEXT_FONT_FAMILY, ICON_TEXT_FONT_SIZE, ICON_TEXT_FONT_WEIGHT } from "./iconTextStyle";
+
 type SightWordIconProps = {
   size?: number;
 };
@@ -6,14 +8,14 @@ export function SightWordIcon({ size = 48 }: SightWordIconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
       <text
-        x="4"
-        y="50"
-        fontSize="40"
-        fontWeight="800"
-        fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        x="2"
+        y="52"
+        fontSize={ICON_TEXT_FONT_SIZE}
+        fontWeight={ICON_TEXT_FONT_WEIGHT}
+        fontFamily={ICON_TEXT_FONT_FAMILY}
         fill="currentColor"
       >
-        go
+        See
       </text>
       <g
         transform="translate(36, 2) scale(1.25)"

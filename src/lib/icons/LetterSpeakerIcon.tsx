@@ -1,3 +1,5 @@
+import { ICON_TEXT_FONT_FAMILY, ICON_TEXT_FONT_SIZE, ICON_TEXT_FONT_WEIGHT } from "./iconTextStyle";
+
 type LetterSpeakerIconProps = {
   size?: number;
 };
@@ -6,21 +8,21 @@ export function LetterSpeakerIcon({ size = 48 }: LetterSpeakerIconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
       <text
-        x="3"
-        y="55"
-        fontSize="49"
-        fontWeight="800"
-        fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        x="2"
+        y="52"
+        fontSize={ICON_TEXT_FONT_SIZE}
+        fontWeight={ICON_TEXT_FONT_WEIGHT}
+        fontFamily={ICON_TEXT_FONT_FAMILY}
         fill="currentColor"
       >
         A
       </text>
       <text
-        x="38"
-        y="55"
-        fontSize="36"
-        fontWeight="700"
-        fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        x="27"
+        y="52"
+        fontSize={ICON_TEXT_FONT_SIZE}
+        fontWeight={ICON_TEXT_FONT_WEIGHT}
+        fontFamily={ICON_TEXT_FONT_FAMILY}
         fill="currentColor"
       >
         z

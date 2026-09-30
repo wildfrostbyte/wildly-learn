@@ -1,75 +1,30 @@
-# React + TypeScript + Vite
+# Wildly Learning
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A tap-and-listen learning site for young kids. Each game speaks a prompt
+aloud and the child taps the matching answer — no reading or typing required
+to play. It's fully static and client-only: no accounts, no backend, no data
+collection.
 
-Currently, two official plugins are available:
+The site ships as a small set of focused games rather than one broad
+curriculum, all built on the same listen-and-tap pattern so new games stay
+consistent with the ones already there.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It's also playfully double-branded: the light theme is Pokémon-themed, the
+dark theme is Minnesota Wild-themed. That pairing is intentional and
+shouldn't be merged into a generic light/dark toggle.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Developing
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+npm install
+npm run dev      # local dev server
+npm run build     # typecheck + production build
+npm run preview   # serve the production build locally
 ```
+
+Deploys as a static site to Cloudflare via `wrangler`.
+
+## More context
+
+- [PRODUCT.md](PRODUCT.md) — who this is for, product intent, brand commitments.
+- [ARCHITECTURE.md](ARCHITECTURE.md) — code layout and conventions for adding to it.
