@@ -36,6 +36,6 @@
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   padding: 1.5rem;
 }

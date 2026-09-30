@@ -3,6 +3,8 @@ import { LetterIdentificationGame } from "./letter-identification/LetterIdentifi
 import { LetterSpeakerIcon } from "../lib/icons/LetterSpeakerIcon";
 import { SightWordsGame } from "./sight-words/SightWordsGame";
 import { SightWordIcon } from "../lib/icons/SightWordIcon";
+import { NumbersGame } from "./numbers/NumbersGame";
+import { NumberSpeakerIcon } from "../lib/icons/NumberSpeakerIcon";
 
 export const games: GameDefinition[] = [
   {
@@ -22,5 +24,14 @@ export const games: GameDefinition[] = [
     accentContrast: "var(--accent-secondary-contrast)",
     icon: SightWordIcon,
     component: SightWordsGame,
+  },
+  {
+    id: "numbers",
+    title: "Numbers",
+    description: "Listen to a number and tap the matching card.",
+    accentColor: "var(--accent-tertiary)",
+    accentContrast: "var(--accent-tertiary-contrast)",
+    icon: NumberSpeakerIcon,
+    component: NumbersGame,
   },
 ];

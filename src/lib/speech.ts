@@ -122,6 +122,7 @@ export function speakLetterName(letterName: string) {
 }
 
 export const speakWord = speakLetterName;
+export const speakNumber = speakLetterName;
 
 export function primeSpeech() {
   const utterance = new SpeechSynthesisUtterance(" ");

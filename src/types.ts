@@ -1,4 +1,4 @@
-export type GameId = "letter-identification" | "sight-words";
+export type GameId = "letter-identification" | "sight-words" | "numbers";
 
 export type GameDefinition = {
   id: GameId;

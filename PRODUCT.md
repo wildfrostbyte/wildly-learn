@@ -12,7 +12,7 @@ Young children in early literacy stages — pre-readers learning the alphabet an
 
 ## Product Purpose
 
-A tap-and-listen early-literacy drill app. The app speaks a letter or word aloud (via the browser's speech synthesis) and the child taps the matching card among a small set of options. Two games today: Letter Identification (uppercase/lowercase letter recognition, full or half alphabet) and Sight Words (four levels of common sight words). Success is a completed round with a correct/incorrect recap and the option to retry.
+A tap-and-listen learning drill app. The app speaks a prompt aloud (via the browser's speech synthesis) and the child taps the matching card among a small set of options. Three games today: Letter Identification (uppercase/lowercase letter recognition, full or half alphabet), Sight Words (four levels of common sight words), and Numbers (0–20, full or half set). Success is a completed round with a correct/incorrect recap and the option to retry.
 
 ## Positioning
 
@@ -28,7 +28,7 @@ A minimal, ad-free, account-free audio-matching drill built specifically for pre
 ## Capabilities and Constraints
 
 - Confirmed: free, ad-free, no accounts, no data collection — the app should stay fully client-side with no backend added casually.
-- Planned: more games are expected beyond the current two (Letter Identification, Sight Words); shared patterns (session setup → rounds → completion, answer-grid tap UI, speech + tone feedback, shared `ActionButton`/`RetryButton`/`AnswerFeedback` components) should stay reusable for future games rather than being special-cased to just these two.
+- Planned: more games are expected beyond the current three (Letter Identification, Sight Words, Numbers); shared patterns (session setup → rounds → completion, answer-grid tap UI, speech + tone feedback, shared `ActionButton`/`RetryButton`/`AnswerFeedback` components) should stay reusable for future games rather than being special-cased to just these three.
 - Desired: the app should keep working on a shared family device with unreliable/offline connectivity. Today it loads Google Fonts (Pacifico, Press Start 2P) from a CDN at runtime, which is a gap against this goal — worth revisiting (e.g. self-hosting fonts) in future work rather than assumed already solved.
 - Speech relies on the browser's `SpeechSynthesis` API (voice selection tuned to prefer natural-sounding female voices; iOS Safari needed several targeted fixes for mispronounced letters).
 
@@ -41,7 +41,7 @@ A minimal, ad-free, account-free audio-matching drill built specifically for pre
 ## Evidence on Hand
 
 - No external content, testimonials, or press — this is a small personal/family tool, not a marketed product. Nothing here should be fabricated (no fake reviews, stats, or claims of a broader user base than confirmed).
-- Sight word lists and letter sets are hardcoded in `src/games/sight-words/words.ts` and `src/games/letter-identification/letters.ts`.
+- Sight word lists, letter sets, and number ranges are hardcoded in `src/games/sight-words/words.ts`, `src/games/letter-identification/letters.ts`, and `src/games/numbers/numbers.ts`.
 
 ## Product Principles
 

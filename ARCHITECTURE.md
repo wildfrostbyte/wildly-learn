@@ -49,9 +49,7 @@ any new game — it's what the shared screens/components assume.
 2. Reuse the session hook shape, `sessionLogic.ts` pattern, and the shared
    components — don't fork new versions of `ActionButton`/`AnswerFeedback`/etc.
 3. Register it in `src/games/index.ts`.
-4. Add a per-game doc in that folder, named for the game (see
-   [LETTERS.md](src/games/letter-identification/LETTERS.md) and
-   [SIGHT_WORDS.md](src/games/sight-words/SIGHT_WORDS.md) for the format).
+4. Add a per-game doc in that folder, named for the game.
 
 ## Keeping these docs current
 

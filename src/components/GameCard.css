@@ -2,7 +2,8 @@
   border: none;
   border-radius: 1.5rem;
   aspect-ratio: 1;
-  width: clamp(7rem, 30vw, 10rem);
+  /* Grows past the old 10rem cap on wide viewports so tiles don't float in empty space on desktop. */
+  width: clamp(7rem, 18vw, 13rem);
   box-shadow: 0 4px 10px var(--shadow);
   cursor: pointer;
   display: flex;
@@ -14,6 +15,11 @@
   transition: transform 0.15s ease;
 }
 
+.game-card svg {
+  width: clamp(3.5rem, 11vw, 5.5rem);
+  height: clamp(3.5rem, 11vw, 5.5rem);
+}
+
 .game-card__label {
   font-size: var(--font-size-caption);
   letter-spacing: 0.03em;
@@ -23,4 +29,15 @@
 
 .game-card:active {
   transform: scale(0.95);
+}
+
+@media (hover: hover) {
+  .game-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.game-card:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
 }
