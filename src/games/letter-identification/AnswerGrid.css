@@ -56,6 +56,12 @@
   transform: scale(0.95);
 }
 
+@media (hover: hover) {
+  .letter-card:not(:disabled):hover:not(:active) {
+    transform: translateY(-2px);
+  }
+}
+
 .letter-card[data-state="correct"] {
   background: var(--accent-secondary);
   color: var(--accent-secondary-contrast);

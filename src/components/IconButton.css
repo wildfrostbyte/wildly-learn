@@ -14,14 +14,9 @@
 }
 
 @media (hover: hover) {
-  .icon-button:hover {
+  .icon-button:hover:not(:active) {
     transform: translateY(-2px);
   }
-}
-
-.icon-button:focus-visible {
-  outline: 3px solid var(--text);
-  outline-offset: 3px;
 }
 
 .icon-button--medium {

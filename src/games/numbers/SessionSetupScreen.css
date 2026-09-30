@@ -45,6 +45,17 @@
   transform: translateY(-4px);
 }
 
+@media (hover: hover) {
+  .mode-picker__option:not([data-selected="true"]):hover:not(:active) {
+    transform: translateY(-2px);
+  }
+}
+
+/* Inset: the parent's overflow: hidden clips an outer ring. */
+.mode-picker__option:focus-visible {
+  outline-offset: -3px;
+}
+
 .session-setup__actions {
   display: flex;
   align-items: center;

@@ -2,8 +2,8 @@
   border: none;
   border-radius: 1.5rem;
   aspect-ratio: 1;
-  /* Grows past the old 10rem cap on wide viewports so tiles don't float in empty space on desktop. */
-  width: clamp(7rem, 18vw, 13rem);
+  /* 30vw keeps "Sight Words" on one line at phone widths. */
+  width: clamp(7rem, 30vw, 13rem);
   box-shadow: 0 4px 10px var(--shadow);
   cursor: pointer;
   display: flex;
@@ -32,12 +32,7 @@
 }
 
 @media (hover: hover) {
-  .game-card:hover {
+  .game-card:hover:not(:active) {
     transform: translateY(-2px);
   }
-}
-
-.game-card:focus-visible {
-  outline: 3px solid var(--text);
-  outline-offset: 3px;
 }

@@ -68,6 +68,11 @@
   box-sizing: border-box;
 }
 
+:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

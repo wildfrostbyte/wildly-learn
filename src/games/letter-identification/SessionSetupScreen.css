@@ -48,6 +48,19 @@
   transform: translateY(-4px);
 }
 
+@media (hover: hover) {
+  .mode-picker__option:not([data-selected="true"]):hover:not(:active),
+  .case-toggle__half:not([data-selected="true"]):hover:not(:active) {
+    transform: translateY(-2px);
+  }
+}
+
+/* Inset: the parent's overflow: hidden clips an outer ring. */
+.mode-picker__option:focus-visible,
+.case-toggle__half:focus-visible {
+  outline-offset: -3px;
+}
+
 .case-toggle__half {
   flex-direction: column;
   gap: 0.75rem;
