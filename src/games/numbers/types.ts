@@ -1,12 +1,9 @@
+import type { QuizSession } from "../../lib/useQuizSession";
+
 export type NumberItem = { value: number };
 
 export type SessionMode = "full" | "half";
 
-export type Session = {
-  mode: SessionMode;
-  order: NumberItem[];
-  currentRound: number;
-  results: { value: number; correct: boolean }[];
-};
+export type NumberSettings = { mode: SessionMode };
 
-export type RoundOutcome = "correct" | "incorrect" | null;
+export type Session = QuizSession<NumberItem, NumberSettings>;

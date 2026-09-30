@@ -5,8 +5,9 @@ import { IconButton } from "../../components/IconButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakNumber } from "../../lib/speech";
 import { AnswerGrid } from "./AnswerGrid";
-import type { NumberItem, RoundOutcome } from "./types";
-import "./RoundScreen.css";
+import type { RoundOutcome } from "../../lib/quiz";
+import type { NumberItem } from "./types";
+import "../../styles/round-screen.css";
 
 type RoundScreenProps = {
   target: NumberItem;

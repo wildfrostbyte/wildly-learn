@@ -1,3 +1,5 @@
+import type { QuizSession } from "../../lib/useQuizSession";
+
 export type LetterCase = "upper" | "lower";
 
 export type Letter = {
@@ -11,12 +13,6 @@ export type Letter = {
 
 export type SessionMode = "full" | "half";
 
-export type Session = {
-  mode: SessionMode;
-  letterCase: LetterCase;
-  order: Letter[];
-  currentRound: number;
-  results: { letter: string; correct: boolean }[];
-};
+export type LetterSettings = { mode: SessionMode; letterCase: LetterCase };
 
-export type RoundOutcome = "correct" | "incorrect" | null;
+export type Session = QuizSession<Letter, LetterSettings>;

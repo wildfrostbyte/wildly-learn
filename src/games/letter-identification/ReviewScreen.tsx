@@ -5,7 +5,7 @@ import { speakLetterName } from "../../lib/speech";
 import { AnswerGrid } from "./AnswerGrid";
 import { ALPHABET, phoneticFor } from "./letters";
 import type { LetterCase } from "./types";
-import "./ReviewScreen.css";
+import "../../styles/review-screen.css";
 
 type ReviewScreenProps = {
   letterCase: LetterCase;

@@ -5,8 +5,9 @@ import { IconButton } from "../../components/IconButton";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakWord } from "../../lib/speech";
 import { WordGrid } from "./WordGrid";
-import type { RoundOutcome, SightWord } from "./types";
-import "./RoundScreen.css";
+import type { RoundOutcome } from "../../lib/quiz";
+import type { SightWord } from "./types";
+import "../../styles/round-screen.css";
 
 type RoundScreenProps = {
   target: SightWord;

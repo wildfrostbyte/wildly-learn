@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNumberSession } from "./useNumberSession";
+import { useQuizSession } from "../../lib/useQuizSession";
+import { numberQuizRules } from "./sessionLogic";
 import { SessionSetupScreen } from "./SessionSetupScreen";
 import { ReviewScreen } from "./ReviewScreen";
 import { RoundScreen } from "./RoundScreen";
@@ -24,7 +25,7 @@ export function NumbersGame({ onExit }: NumbersGameProps) {
     startSession,
     submitAnswer,
     exitSession,
-  } = useNumberSession();
+  } = useQuizSession(numberQuizRules);
 
   function handleExitSession() {
     exitSession();
@@ -34,7 +35,7 @@ export function NumbersGame({ onExit }: NumbersGameProps) {
   function handlePlay() {
     primeSpeech();
     primeTones();
-    startSession(mode);
+    startSession({ mode });
   }
 
   if (phase === "playing" && session && currentTarget) {

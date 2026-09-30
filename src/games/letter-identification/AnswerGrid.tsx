@@ -1,6 +1,7 @@
-import type { Letter, LetterCase, RoundOutcome } from "./types";
+import type { RoundOutcome } from "../../lib/quiz";
+import type { Letter, LetterCase } from "./types";
 import { toDisplayChar } from "./letters";
-import "./AnswerGrid.css";
+import "../../styles/answer-grid.css";
 
 type AnswerGridProps = {
   options: Letter[];
@@ -29,7 +30,7 @@ export function AnswerGrid({
             <button
               key={option.char}
               type="button"
-              className="letter-card"
+              className="answer-card"
               onClick={() => onSelect(option)}
             >
               {toDisplayChar(option.char, letterCase)}
@@ -45,7 +46,7 @@ export function AnswerGrid({
           <button
             key={option.char}
             type="button"
-            className="letter-card"
+            className="answer-card"
             data-state={cardState}
             data-reveal={isRevealedCorrect || undefined}
             disabled={roundOutcome !== null}

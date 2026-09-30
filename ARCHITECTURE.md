@@ -12,12 +12,15 @@ Cloudflare via `wrangler` (`wrangler.jsonc`).
 
 - `src/games/<game>/` — one game's screens, session logic, and data.
 - `src/components/` — shared UI used across games.
-- `src/lib/` — cross-game utilities: `speech.ts`, `tones.ts`, `icons/`.
+- `src/lib/` — cross-game logic: `useQuizSession.ts`, `quiz.ts`, `speech.ts`, `tones.ts`, `icons/`.
+- `src/styles/` — CSS shared by every game's screens (setup, round, review, completion, answer grid).
 
 ## Session pattern
 
-Every game's `use<Game>Session.ts` hook returns the same shape, driven by
-`sessionLogic.ts` (session ordering, round options):
+All games run on one hook, `useQuizSession(rules)` (`lib/useQuizSession.ts`).
+Each game's `sessionLogic.ts` exports only its rules — how to build the
+session order and each round's options (`lib/quiz.ts` has `shuffle` and a
+default `pickRoundOptions`). The hook returns:
 
 ```
 phase, session, currentTarget, currentOptions, roundOutcome,
@@ -25,8 +28,14 @@ startSession, submitAnswer, exitSession
 ```
 
 The game's top-level `<Game>.tsx` switches on `phase` between its
-`SetupScreen`, `RoundScreen`, and `CompletionScreen`. Match this shape for
-any new game — it's what the shared screens/components assume.
+`SetupScreen`, `RoundScreen`, and `CompletionScreen`.
+
+## Styles
+
+CSS is global, so two files defining the same selector silently override
+each other. Shared screen styles live once in `src/styles/`; a game's own
+tweaks go in its folder, scoped with a modifier class (e.g.
+`completion-screen--words`) or a CSS variable (e.g. `--picker-selected`).
 
 ## Shared components (`src/components/`)
 
@@ -46,8 +55,8 @@ any new game — it's what the shared screens/components assume.
 ## Adding a new game
 
 1. New folder under `src/games/<game>/` with the file set above.
-2. Reuse the session hook shape, `sessionLogic.ts` pattern, and the shared
-   components — don't fork new versions of `ActionButton`/`AnswerFeedback`/etc.
+2. Export the game's rules from `sessionLogic.ts` and call `useQuizSession`;
+   import the shared `src/styles/` CSS and components — don't fork them.
 3. Register it in `src/games/index.ts`.
 4. Add a per-game doc in that folder, named for the game.
 

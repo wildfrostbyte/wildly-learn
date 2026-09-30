@@ -29,7 +29,7 @@
   grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
 }
 
-.letter-card {
+.answer-card {
   aspect-ratio: 1;
   border: none;
   border-radius: 1.25rem;
@@ -43,40 +43,40 @@
 }
 
 @media (orientation: landscape) {
-  .answer-grid[data-count="2"] .letter-card {
+  .answer-grid[data-count="2"] .answer-card {
     font-size: clamp(3rem, 14vw, 8rem);
   }
 }
 
-.answer-grid[data-mode="review"] .letter-card {
+.answer-grid[data-mode="review"] .answer-card {
   font-size: clamp(1.25rem, 5vw, 2rem);
 }
 
-.letter-card:active:not(:disabled) {
+.answer-card:active:not(:disabled) {
   transform: scale(0.95);
 }
 
 @media (hover: hover) {
-  .letter-card:not(:disabled):hover:not(:active) {
+  .answer-card:not(:disabled):hover:not(:active) {
     transform: translateY(-2px);
   }
 }
 
-.letter-card[data-state="correct"] {
+.answer-card[data-state="correct"] {
   background: var(--accent-secondary);
   color: var(--accent-secondary-contrast);
 }
 
-.letter-card[data-state="incorrect"] {
+.answer-card[data-state="incorrect"] {
   background: var(--incorrect);
   color: var(--accent-tertiary-contrast);
 }
 
-.letter-card[data-reveal="true"] {
-  animation: letter-card-reveal 0.4s ease;
+.answer-card[data-reveal="true"] {
+  animation: answer-card-reveal 0.4s ease;
 }
 
-@keyframes letter-card-reveal {
+@keyframes answer-card-reveal {
   0% {
     transform: scale(0.9);
   }
@@ -89,7 +89,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .letter-card[data-reveal="true"] {
+  .answer-card[data-reveal="true"] {
     animation: none;
   }
 }

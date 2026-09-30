@@ -2,6 +2,7 @@ import { Check, House, PartyPopper, X } from "lucide-react";
 import { IconButton } from "../../components/IconButton";
 import { RetryButton } from "../../components/RetryButton";
 import type { Session } from "./types";
+import "../../styles/completion-screen.css";
 import "./CompletionScreen.css";
 
 type CompletionScreenProps = {
@@ -20,13 +21,13 @@ export function CompletionScreen({ session, onRetry, onExit }: CompletionScreenP
   const total = session.results.length;
   const correctCount = session.results.filter((result) => result.correct).length;
   const percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-  const recap = [...session.results].sort((a, b) => a.word.localeCompare(b.word));
+  const recap = [...session.results].sort((a, b) => a.item.text.localeCompare(b.item.text));
 
   return (
-    <div className="completion-screen">
+    <div className="completion-screen completion-screen--words">
       <div className="completion-screen__headline">
         <PartyPopper size={64} color="var(--accent-secondary)" />
-        <p className="completion-screen__level">Level {session.level} complete</p>
+        <p className="completion-screen__level">Level {session.settings.level} complete</p>
         <p className="completion-screen__tier">{tierMessage(percent)}</p>
         <p className="completion-screen__score">
           {correctCount} / {total}
@@ -37,12 +38,12 @@ export function CompletionScreen({ session, onRetry, onExit }: CompletionScreenP
       <div className="completion-screen__recap">
         {recap.map((result, index) => (
           <div
-            key={result.word}
+            key={result.item.text}
             className="completion-screen__tile"
             data-correct={result.correct}
             style={{ animationDelay: `${index * 40}ms` }}
           >
-            <span className="completion-screen__tile-word">{result.word}</span>
+            <span className="completion-screen__tile-label">{result.item.text}</span>
             {result.correct ? <Check size={22} /> : <X size={22} />}
           </div>
         ))}

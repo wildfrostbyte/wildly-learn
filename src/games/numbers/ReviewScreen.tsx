@@ -4,7 +4,7 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakNumber } from "../../lib/speech";
 import { AnswerGrid } from "./AnswerGrid";
 import { NUMBERS } from "./numbers";
-import "./ReviewScreen.css";
+import "../../styles/review-screen.css";
 
 type ReviewScreenProps = {
   onExit: () => void;

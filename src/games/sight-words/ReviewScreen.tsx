@@ -4,7 +4,7 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakWord } from "../../lib/speech";
 import { WordGrid } from "./WordGrid";
 import type { SightWord } from "./types";
-import "./ReviewScreen.css";
+import "../../styles/review-screen.css";
 
 type ReviewScreenProps = {
   words: SightWord[];

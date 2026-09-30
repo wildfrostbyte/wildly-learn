@@ -5,6 +5,7 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import { LetterStripFullIcon } from "../../lib/icons/LetterStripFullIcon";
 import { LetterStripHalfIcon } from "../../lib/icons/LetterStripHalfIcon";
 import type { SessionMode } from "./types";
+import "../../styles/session-setup.css";
 import "./SessionSetupScreen.css";
 
 type SessionSetupScreenProps = {

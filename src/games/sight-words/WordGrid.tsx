@@ -1,4 +1,5 @@
-import type { RoundOutcome, SightWord } from "./types";
+import type { RoundOutcome } from "../../lib/quiz";
+import type { SightWord } from "./types";
 import "./WordGrid.css";
 
 type WordGridProps = {

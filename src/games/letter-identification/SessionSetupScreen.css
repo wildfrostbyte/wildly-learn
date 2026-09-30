@@ -1,67 +1,4 @@
-.session-setup {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.session-setup__top-bar {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-}
-
-.session-setup__controls {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  padding: 1rem;
-}
-
-.mode-picker,
-.case-toggle {
-  display: flex;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: 0 4px 10px var(--shadow);
-}
-
-.mode-picker__option,
-.case-toggle__half {
-  border: none;
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-  padding: 1.5rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-}
-
-.mode-picker__option[data-selected="true"],
-.case-toggle__half[data-selected="true"] {
-  background: var(--accent-primary);
-  color: var(--accent-primary-contrast);
-  transform: translateY(-4px);
-}
-
-@media (hover: hover) {
-  .mode-picker__option:not([data-selected="true"]):hover:not(:active),
-  .case-toggle__half:not([data-selected="true"]):hover:not(:active) {
-    transform: translateY(-2px);
-  }
-}
-
-/* Inset: the parent's overflow: hidden clips an outer ring. */
-.mode-picker__option:focus-visible,
-.case-toggle__half:focus-visible {
-  outline-offset: -3px;
-}
-
-.case-toggle__half {
+.case-toggle .mode-picker__option {
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.25rem 1.5rem;
@@ -76,12 +13,4 @@
 .case-toggle__label {
   font-size: var(--font-size-caption);
   letter-spacing: 0.05em;
-}
-
-.session-setup__actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  padding-bottom: 3rem;
 }

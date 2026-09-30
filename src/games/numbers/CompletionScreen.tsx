@@ -2,7 +2,7 @@ import { Check, House, PartyPopper, X } from "lucide-react";
 import { IconButton } from "../../components/IconButton";
 import { RetryButton } from "../../components/RetryButton";
 import type { Session } from "./types";
-import "./CompletionScreen.css";
+import "../../styles/completion-screen.css";
 
 type CompletionScreenProps = {
   session: Session;
@@ -20,7 +20,7 @@ export function CompletionScreen({ session, onRetry, onExit }: CompletionScreenP
   const total = session.results.length;
   const correctCount = session.results.filter((result) => result.correct).length;
   const percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-  const recap = [...session.results].sort((a, b) => a.value - b.value);
+  const recap = [...session.results].sort((a, b) => a.item.value - b.item.value);
 
   return (
     <div className="completion-screen">
@@ -36,12 +36,12 @@ export function CompletionScreen({ session, onRetry, onExit }: CompletionScreenP
       <div className="completion-screen__recap">
         {recap.map((result, index) => (
           <div
-            key={result.value}
+            key={result.item.value}
             className="completion-screen__tile"
             data-correct={result.correct}
             style={{ animationDelay: `${index * 40}ms` }}
           >
-            <span className="completion-screen__tile-number">{result.value}</span>
+            <span className="completion-screen__tile-label">{result.item.value}</span>
             {result.correct ? <Check size={22} /> : <X size={22} />}
           </div>
         ))}

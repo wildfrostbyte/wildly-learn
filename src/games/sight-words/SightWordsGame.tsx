@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useWordSession } from "./useWordSession";
+import { useQuizSession } from "../../lib/useQuizSession";
+import { wordQuizRules } from "./sessionLogic";
 import { LevelSetupScreen } from "./LevelSetupScreen";
 import { ReviewScreen } from "./ReviewScreen";
 import { RoundScreen } from "./RoundScreen";
@@ -25,7 +26,7 @@ export function SightWordsGame({ onExit }: SightWordsGameProps) {
     startSession,
     submitAnswer,
     exitSession,
-  } = useWordSession();
+  } = useQuizSession(wordQuizRules);
 
   function handleExitSession() {
     exitSession();
@@ -35,7 +36,7 @@ export function SightWordsGame({ onExit }: SightWordsGameProps) {
   function handlePlay() {
     primeSpeech();
     primeTones();
-    startSession(level);
+    startSession({ level });
   }
 
   if (phase === "playing" && session && currentTarget) {

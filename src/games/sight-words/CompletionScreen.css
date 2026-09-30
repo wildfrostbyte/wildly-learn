@@ -1,22 +1,3 @@
-.completion-screen {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1.5rem 1rem;
-  overflow-y: auto;
-}
-
-.completion-screen__headline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  animation: completion-pop 0.4s ease;
-}
-
 .completion-screen__level {
   margin: 0;
   font-size: clamp(0.85rem, 3vw, 1.1rem);
@@ -24,92 +5,19 @@
   opacity: 0.75;
 }
 
-.completion-screen__tier {
-  margin: 0;
-  font-size: clamp(1rem, 4vw, 1.5rem);
-}
-
-.completion-screen__score {
-  margin: 0;
-  font-size: clamp(1.75rem, 8vw, 3rem);
-  color: var(--accent-secondary);
-}
-
-.completion-screen__percent {
-  margin: 0;
-  font-size: clamp(1rem, 4vw, 1.25rem);
-  color: var(--text);
-}
-
-.completion-screen__recap {
-  display: grid;
+.completion-screen--words .completion-screen__recap {
   grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 30rem;
 }
 
-.completion-screen__tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.15rem;
+.completion-screen--words .completion-screen__tile {
+  aspect-ratio: auto;
   min-height: 3.5rem;
   padding: 0.5rem;
-  border-radius: 0.75rem;
-  background: var(--surface);
-  box-shadow: 0 2px 6px var(--shadow);
-  font-size: 1rem;
-  animation: completion-tile-pop 0.3s ease backwards;
 }
 
-.completion-screen__tile-word {
-  font-weight: var(--font-weight-display);
+.completion-screen--words .completion-screen__tile-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-}
-
-.completion-screen__tile[data-correct="true"] {
-  color: var(--accent-secondary);
-}
-
-.completion-screen__tile[data-correct="false"] {
-  color: var(--incorrect);
-}
-
-.completion-screen__actions {
-  display: flex;
-  gap: 1.25rem;
-}
-
-@keyframes completion-pop {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes completion-tile-pop {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .completion-screen__headline,
-  .completion-screen__tile {
-    animation: none;
-  }
 }

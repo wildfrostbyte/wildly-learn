@@ -56,7 +56,7 @@
   animation: completion-tile-pop 0.3s ease backwards;
 }
 
-.completion-screen__tile-letter {
+.completion-screen__tile-label {
   font-weight: var(--font-weight-display);
 }
 

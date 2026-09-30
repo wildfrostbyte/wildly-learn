@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useLetterSession } from "./useLetterSession";
+import { useQuizSession } from "../../lib/useQuizSession";
+import { letterQuizRules } from "./sessionLogic";
 import { SessionSetupScreen } from "./SessionSetupScreen";
 import { ReviewScreen } from "./ReviewScreen";
 import { RoundScreen } from "./RoundScreen";
@@ -25,7 +26,7 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
     startSession,
     submitAnswer,
     exitSession,
-  } = useLetterSession();
+  } = useQuizSession(letterQuizRules);
 
   function handleExitSession() {
     exitSession();
@@ -35,7 +36,7 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
   function handlePlay() {
     primeSpeech();
     primeTones();
-    startSession(mode, letterCase);
+    startSession({ mode, letterCase });
   }
 
   if (phase === "playing" && session && currentTarget) {
@@ -43,7 +44,7 @@ export function LetterIdentificationGame({ onExit }: LetterIdentificationGamePro
       <RoundScreen
         target={currentTarget}
         options={currentOptions}
-        letterCase={session.letterCase}
+        letterCase={session.settings.letterCase}
         roundOutcome={roundOutcome}
         onSelect={submitAnswer}
         onExit={handleExitSession}

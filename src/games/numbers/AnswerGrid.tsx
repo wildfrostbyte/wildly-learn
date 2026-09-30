@@ -1,5 +1,6 @@
-import type { NumberItem, RoundOutcome } from "./types";
-import "./AnswerGrid.css";
+import type { RoundOutcome } from "../../lib/quiz";
+import type { NumberItem } from "./types";
+import "../../styles/answer-grid.css";
 
 type AnswerGridProps = {
   options: NumberItem[];
@@ -26,7 +27,7 @@ export function AnswerGrid({
             <button
               key={option.value}
               type="button"
-              className="number-card"
+              className="answer-card"
               onClick={() => onSelect(option)}
             >
               {option.value}
@@ -42,7 +43,7 @@ export function AnswerGrid({
           <button
             key={option.value}
             type="button"
-            className="number-card"
+            className="answer-card"
             data-state={cardState}
             data-reveal={isRevealedCorrect || undefined}
             disabled={roundOutcome !== null}

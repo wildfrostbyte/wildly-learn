@@ -5,6 +5,7 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import { LetterStripFullIcon } from "../../lib/icons/LetterStripFullIcon";
 import { LetterStripHalfIcon } from "../../lib/icons/LetterStripHalfIcon";
 import type { LetterCase, SessionMode } from "./types";
+import "../../styles/session-setup.css";
 import "./SessionSetupScreen.css";
 
 type SessionSetupScreenProps = {
@@ -57,10 +58,10 @@ export function SessionSetupScreen({
           </button>
         </div>
 
-        <div className="case-toggle">
+        <div className="mode-picker case-toggle">
           <button
             type="button"
-            className="case-toggle__half"
+            className="mode-picker__option"
             data-selected={letterCase === "upper"}
             onClick={() => onLetterCaseChange("upper")}
             aria-label="Uppercase letters"
@@ -70,7 +71,7 @@ export function SessionSetupScreen({
           </button>
           <button
             type="button"
-            className="case-toggle__half"
+            className="mode-picker__option"
             data-selected={letterCase === "lower"}
             onClick={() => onLetterCaseChange("lower")}
             aria-label="Lowercase letters"

@@ -6,8 +6,9 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import { speakLetterName } from "../../lib/speech";
 import { AnswerGrid } from "./AnswerGrid";
 import { phoneticFor } from "./letters";
-import type { Letter, LetterCase, RoundOutcome } from "./types";
-import "./RoundScreen.css";
+import type { RoundOutcome } from "../../lib/quiz";
+import type { Letter, LetterCase } from "./types";
+import "../../styles/round-screen.css";
 
 type RoundScreenProps = {
   target: Letter;

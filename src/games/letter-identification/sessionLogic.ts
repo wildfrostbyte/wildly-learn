@@ -1,39 +1,22 @@
+import { shuffle } from "../../lib/quiz";
+import type { QuizRules } from "../../lib/useQuizSession";
 import { ALPHABET } from "./letters";
-import type { Letter, LetterCase, SessionMode } from "./types";
+import type { Letter, LetterCase, LetterSettings, SessionMode } from "./types";
 
 const HALF_MODE_LETTER_COUNT = 13;
 
-export function shuffle<T>(items: T[]): T[] {
-  const shuffled = [...items];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
-export function buildSessionOrder(mode: SessionMode): Letter[] {
+function buildSessionOrder(mode: SessionMode): Letter[] {
   const shuffledAlphabet = shuffle(ALPHABET);
-  return mode === "full"
-    ? shuffledAlphabet
-    : shuffledAlphabet.slice(0, HALF_MODE_LETTER_COUNT);
-}
-
-export function getOptionCountForRound(roundNumber: number): 2 | 3 | 4 {
-  if (roundNumber <= 2) return 2;
-  if (roundNumber <= 5) return 3;
-  return 4;
+  return mode === "full" ? shuffledAlphabet : shuffledAlphabet.slice(0, HALF_MODE_LETTER_COUNT);
 }
 
 function confusablesOf(letter: Letter, letterCase: LetterCase): string[] {
   const confusables =
-    letterCase === "upper"
-      ? letter.confusableWithUpper
-      : letter.confusableWithLower;
+    letterCase === "upper" ? letter.confusableWithUpper : letter.confusableWithLower;
   return confusables ?? [];
 }
 
-export function buildRoundOptions(
+function buildRoundOptions(
   pool: Letter[],
   target: Letter,
   optionCount: number,
@@ -52,3 +35,9 @@ export function buildRoundOptions(
 
   return shuffle([target, ...distractors]);
 }
+
+export const letterQuizRules: QuizRules<Letter, LetterSettings> = {
+  buildOrder: (settings) => buildSessionOrder(settings.mode),
+  buildOptions: (pool, target, optionCount, settings) =>
+    buildRoundOptions(pool, target, optionCount, settings.letterCase),
+};
