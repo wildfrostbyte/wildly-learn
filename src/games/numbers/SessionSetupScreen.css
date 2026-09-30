@@ -39,7 +39,8 @@
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
-.mode-picker__option[data-selected="true"] {
+/* Scoped: the unscoped selector would also recolor the Letters picker (CSS is global). */
+.session-setup--numbers .mode-picker__option[data-selected="true"] {
   background: var(--accent-tertiary);
   color: var(--accent-tertiary-contrast);
   transform: translateY(-4px);

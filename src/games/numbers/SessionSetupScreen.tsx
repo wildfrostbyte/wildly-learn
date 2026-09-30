@@ -23,7 +23,7 @@ export function SessionSetupScreen({
   onExit,
 }: SessionSetupScreenProps) {
   return (
-    <div className="session-setup">
+    <div className="session-setup session-setup--numbers">
       <div className="session-setup__top-bar">
         <IconButton onClick={onExit} ariaLabel="Exit to menu">
           <House size={22} />

@@ -24,7 +24,7 @@ export function ReviewScreen({ onExit }: ReviewScreenProps) {
         <AnswerGrid
           options={NUMBERS}
           mode="review"
-          onSelect={(item) => speakNumber(String(item.value))}
+          onSelect={(item) => speakNumber(item.value)}
         />
       </div>
     </div>

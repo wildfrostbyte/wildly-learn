@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-.impeccable/config.local.json
+.impeccable/
 .wrangler
 .dev.vars*
 

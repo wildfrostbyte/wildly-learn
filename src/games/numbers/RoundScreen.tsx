@@ -32,7 +32,7 @@ export function RoundScreen({
   }
 
   useEffect(() => {
-    speakNumber(String(target.value));
+    speakNumber(target.value);
   }, [target]);
 
   function handleSelect(item: NumberItem) {
@@ -48,7 +48,7 @@ export function RoundScreen({
         </IconButton>
         <div className="round-screen__top-bar-right">
           <ThemeToggle />
-          <IconButton onClick={() => speakNumber(String(target.value))} ariaLabel="Repeat number">
+          <IconButton onClick={() => speakNumber(target.value)} ariaLabel="Repeat number">
             <Volume2 size={22} />
           </IconButton>
         </div>

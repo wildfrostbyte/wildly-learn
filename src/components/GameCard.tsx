@@ -19,7 +19,7 @@ export function GameCard({ game, onSelect }: GameCardProps) {
     >
       <Icon size={56} />
       <span className="game-card__label">{game.title}</span>
-      <span id={descriptionId} className="sr-only">
+      <span id={descriptionId} className="sr-only" aria-hidden="true">
         {game.description}
       </span>
     </button>
